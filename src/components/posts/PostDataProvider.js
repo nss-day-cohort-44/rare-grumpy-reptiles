@@ -10,9 +10,6 @@ export const PostDataProvider = (props) => {
       .then((res) => res.json())
       .then(setPosts);
   };
-  const getPostById = (id) => {
-    return fetch(`http://localhost:8088/posts/${id}`).then((res) => res.json());
-  };
 
   const getPostById = (id) => {
     return fetch(`http://localhost:8088/posts/${id}`)
@@ -53,8 +50,8 @@ export const PostDataProvider = (props) => {
         getAllPosts,
         getPostById,
         addPost,
-        updatePost
-        getPostByUser,
+        updatePost,
+        getPostByUser
       }}
     >
       {props.children}
