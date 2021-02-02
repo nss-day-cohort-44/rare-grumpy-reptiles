@@ -14,6 +14,33 @@ export const PostDataProvider = (props) => {
     return fetch(`http://localhost:8088/posts/${id}`).then((res) => res.json());
   };
 
+  const getPostById = (id) => {
+    return fetch(`http://localhost:8088/posts/${id}`)
+      .then(res => res.json())
+  }
+
+  const addPost = post => {
+    return fetch("http://localhost:8088/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(post)
+    })
+      .then(getAllPosts)
+  }
+
+  const updatePost = post => {
+    return fetch(`http://localhost:8088/posts/${post.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(post)
+    })
+      .then(getAllPosts)
+  }
+
   const getPostByUser = (userId) => {
     return fetch(
       `http://localhost:8088/posts/?user_id=${userId}?_expand=username`
@@ -25,6 +52,8 @@ export const PostDataProvider = (props) => {
         posts,
         getAllPosts,
         getPostById,
+        addPost,
+        updatePost
         getPostByUser,
       }}
     >
