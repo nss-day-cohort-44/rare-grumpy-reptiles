@@ -10,6 +10,9 @@ export const PostDataProvider = (props) => {
       .then((res) => res.json())
       .then(setPosts);
   };
+  const getPostById = (id) => {
+    return fetch(`http://localhost:8088/posts/${id}`).then((res) => res.json());
+  };
 
   const getPostById = (id) => {
     return fetch(`http://localhost:8088/posts/${id}`)
@@ -38,6 +41,11 @@ export const PostDataProvider = (props) => {
       .then(getAllPosts)
   }
 
+  const getPostByUser = (userId) => {
+    return fetch(
+      `http://localhost:8088/posts/?user_id=${userId}?_expand=username`
+    );
+  };
   return (
     <PostContext.Provider
       value={{
@@ -46,6 +54,7 @@ export const PostDataProvider = (props) => {
         getPostById,
         addPost,
         updatePost
+        getPostByUser,
       }}
     >
       {props.children}
