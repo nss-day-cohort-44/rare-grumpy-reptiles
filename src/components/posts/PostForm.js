@@ -1,5 +1,4 @@
-import { useContext, useEffect } from "react"
-import React { useContext, useState, useEffect } from 'react'
+import React, {useContext, useState, useEffect} from "react"
 import { PostContext } from "./PostDataProvider"
 // import { CategoriesContext } from "../categories/CategoriesDataProvider"
 // react-bootstrap components
@@ -8,7 +7,7 @@ import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 
 export const PostForm = (props) => {
-    const { addPost, getPostById } = useContext(PostContext)
+    const { updatePost, addPost, getPostById } = useContext(PostContext)
     const [post, setPost] = useState({})
 
     // const { categories, getCategories } = useContext(CategoriesContext)
@@ -31,12 +30,96 @@ export const PostForm = (props) => {
     }
 
     useEffect(() => {
-        getCategories()
+        // getCategories()
         getPostInEditMode()
     }, [])
 
+    const createNewPost = () => {
+        if (editMode) {
+            updatePost({
+                id: post.id,
+                user_id: post.user_id,
+                category_id: post.category_id,
+                title: post.title,
+                publication_date: post.publication_date,
+                image_url: post.image_url,
+                content: post.content,
+                approved: post.approved
+            })
+            .then(() => props.history.push(`/posts/${post.id}`))
+        }
+        else {
+            addPost({
+                user_id: parseInt(props.match.params.rare_user_id),
+                category_id: parseInt(post.category_id),
+                title: post.title,
+                image_url: post.image_url,
+                content: post.content
+                })
+            .then(() => props.history.push("/posts"))
+        }
+    }
 
+    return (
+        <Container>
+            <Form className="postForm">
+            <h3 className="postForm__title">{editMode ? "Edit Post" : "Add New Post"}</h3>
+            <Form.Group>
+                <div className="form-group">
+                    <Form.Label htmlFor="title">Article Title</Form.Label>
+                    <Form.Control type="text" name="title" required autoFocus className="form-control"
+                        proptype="varchar"
+                        defaultValue={post.title}
+                        onChange={handleControlledInputChange}
+                    />
+                </div>
+            </Form.Group>
+            <Form.Group>
+                <div className="form-group">
+                    <Form.Label htmlFor="image_url">Image URL</Form.Label>
+                    <Form.Control type="text" name="image_url" autoFocus className="form-control"
+                        proptype="varchar"
+                        defaultValue={post.image_url}
+                        onChange={handleControlledInputChange}
+                    />
+                </div>
+            </Form.Group>
+            <Form.Group>
+                <div className="form-group">
+                    <Form.Label htmlFor="content">Article Content</Form.Label>
+                    <Form.Control as="textarea" rows={5} name="content" required autoFocus className="form-control"
+                        proptype="varchar"
+                        defaultValue={post.content}
+                        onChange={handleControlledInputChange}
+                    />
+                </div>
+            </Form.Group>
+            <Form.Group>
+                <div className="form-group">
+                    <Form.Label htmlFor="category_id">Category</Form.Label>
+                    <Form.Control as="select" name="category_id" className="form-control"
+                        proptype="int"
+                        value={post.category_id}
+                        onChange={handleControlledInputChange}>
 
-
-
+                        <option value="1">Select a category</option>
+                        {/* {categories.map(c => (
+                            <option key={c.id} value={c.id}>
+                                {c.label}
+                            </option>
+                        ))} */}
+                    </Form.Control>
+                </div>
+            </Form.Group>
+            <Button className="btn" variant="primary" type="submit"
+                onClick={evt => {
+                    evt.preventDefault()
+                    createNewPost()
+                }}
+                className="btn btn-primary">
+                {editMode ? "Save Updates" : "Save"}
+            </Button>
+            </Form>
+        </Container>
+    )
 }
