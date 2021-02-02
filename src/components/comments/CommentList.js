@@ -3,13 +3,15 @@ import { Comment } from "./Comment";
 import { CommentContext } from "./CommentDataProvider";
 import "./Comment.css";
 
-export const CommentList = () => {
-  const { comments, getAllComments } = useContext(CommentContext);
+export const CommentList = (props) => {
+  const { comments, getCommentsByPostId } = useContext(CommentContext);
   const { filteredComments, setComments } = useState([]);
   useEffect(() => {
-    getAllComments();
+    console.log(props.match.params.id)
+    getCommentsByPostId(parseInt(props.match.params.id));
   }, []);
-
+  
+ 
   useEffect(() => {
     console.log("Comments", comments);
   }, [comments]);

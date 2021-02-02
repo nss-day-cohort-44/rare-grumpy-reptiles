@@ -28,11 +28,29 @@ export const ApplicationViews = (props) => {
         <CommentDataProvider>
           <Route
             exact
-            path="/comments"
+            path="/posts/:id(\d+)/comments"
             render={(props) => <CommentList {...props} />}
           ></Route>
         </CommentDataProvider>
       </div>
+      <div>
+        <CommentDataProvider>
+          <Route
+            exact
+            path="'/comments/createNew'"
+            render={(props) => <CommentList {...props} />}
+          ></Route>
+        </CommentDataProvider>
+      </div>
+      {/* <div>
+        <CommentDataProvider>
+          <Route
+            exact
+            path="/comments"
+            render={(props) => <CommentList {...props} />}
+          ></Route>
+        </CommentDataProvider>
+      </div> */}
     </>
   );
 };

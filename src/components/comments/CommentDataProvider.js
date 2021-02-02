@@ -11,14 +11,27 @@ export const CommentDataProvider = (props) => {
       .then(setComments);
   };
 
+  const getCommentsByPostId = (id) => {
+    return fetch(`http://localhost:8088/comments?post_id=${id}`)
+    .then((res) => res.json())
+    .then(setComments)
+    ;
+  };
+
   return (
     <CommentContext.Provider
       value={{
         comments,
         getAllComments,
+        getCommentsByPostId
       }}
     >
       {props.children}
     </CommentContext.Provider>
   );
+
+
+
+
+
 };
