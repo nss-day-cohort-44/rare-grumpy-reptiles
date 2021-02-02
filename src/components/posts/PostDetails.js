@@ -19,7 +19,7 @@ export const PostDetails = (props) => {
       <div className="postDetails">
         <h3>{post.title}</h3>
         <div>{post.content}</div>
-        <div>post author</div>
+        <div>{post.username}</div>
         <div>{post.publication_date}</div>
         <Link to={`/`}>Comments</Link>
       </div>
