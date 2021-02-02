@@ -5,11 +5,16 @@ import { CategoryForm} from "./CategoryForm"
 
 
 export const CategoryList = (props) => {
-   const {categories, getAllCategories} = useContext(CategoryContext)
+   const {categories, getAllCategories, editCategory, deleteCategory} = useContext(CategoryContext)
 
    useEffect(() => {
        getAllCategories()
    }, [])
+
+   const deleteCategoryButton = (event) => {
+    const id = event.target.id;
+    deleteCategory(categoryId);
+  };
 
    return (
         <div className="categories">
@@ -20,10 +25,15 @@ export const CategoryList = (props) => {
                 categories.map(category => {
                     return <Link key={category.id} to={`/categories/${category.id}`}>
                         <h3>{category.label}</h3>
+                        <button type="submit"> Edit Category </button>
+                        <button class="delete-category-button" onClick={deleteCategoryButton} id={category.id}>
+                Delete Category{" "}
+              </button>
                     </Link>
                 })
             }
         </article>
+        
     </div>
    )
 }
