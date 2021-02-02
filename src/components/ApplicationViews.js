@@ -3,6 +3,9 @@ import { Route } from "react-router-dom";
 import { PostDataProvider } from "./posts/PostDataProvider";
 import { PostDetails } from "./posts/PostDetails";
 import { PostList } from "./posts/PostList";
+import {CategoryList } from "./categories/CategoryList"
+import {CategoryDataProvider } from "./categories/CategoryDataProvider"
+import { CategoryManager } from "./categories/CategoryManager";
 import { PostForm } from "./posts/PostForm";
 
 export const ApplicationViews = (props) => {
@@ -23,6 +26,15 @@ export const ApplicationViews = (props) => {
             }}
           />
         </PostDataProvider>
+
+        <CategoryDataProvider>
+          <Route
+            exact
+            path="/categories"
+            render={(props) => <CategoryManager {...props} />}
+          ></Route>
+        </CategoryDataProvider>
+
       </div>
     </>
   );
