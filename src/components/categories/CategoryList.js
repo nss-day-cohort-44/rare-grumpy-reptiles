@@ -12,7 +12,7 @@ export const CategoryList = (props) => {
    }, [])
 
    const deleteCategoryButton = (event) => {
-    const id = event.target.id;
+    const categoryId = event.target.id;
     deleteCategory(categoryId);
   };
 

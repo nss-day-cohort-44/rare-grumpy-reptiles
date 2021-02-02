@@ -48,7 +48,7 @@ export const CategoryDataProvider = (props) => {
         getAllCategories,
         addCategory,
         editCategory,
-        deleteCategory
+        deleteCategory,
       }}
     >
       {props.children}
