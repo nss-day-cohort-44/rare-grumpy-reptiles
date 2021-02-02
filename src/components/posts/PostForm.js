@@ -23,9 +23,9 @@ export const PostForm = (props) => {
     const getPostInEditMode = () => {
         if (editMode) {
             const postToEdit = parseInt(props.match.params.postId)
-
-            const selectedPost = getPostById(postToEdit)
-            setPost(selectedPost)
+            
+            getPostById(postToEdit)
+                .then((selectedPost) => setPost(selectedPost))
         }
     }
 
@@ -50,7 +50,7 @@ export const PostForm = (props) => {
         }
         else {
             addPost({
-                user_id: parseInt(props.match.params.rare_user_id),
+                user_id: parseInt(localStorage.getItem("rare_user_id")),
                 category_id: parseInt(post.category_id),
                 title: post.title,
                 image_url: post.image_url,
