@@ -3,12 +3,10 @@ import { Route } from "react-router-dom";
 import { PostDataProvider } from "./posts/PostDataProvider";
 import { PostDetails } from "./posts/PostDetails";
 import { PostList } from "./posts/PostList";
-<<<<<<< HEAD
 import { CommentDataProvider } from "./comments/CommentDataProvider";
 import { CommentList } from "./comments/CommentList";
-=======
+import { CommentForm } from "./comments/CommentForm";
 import { PostForm } from "./posts/PostForm";
->>>>>>> main
 
 export const ApplicationViews = (props) => {
   return (
@@ -42,8 +40,8 @@ export const ApplicationViews = (props) => {
         <CommentDataProvider>
           <Route
             exact
-            path="'/comments/createNew'"
-            render={(props) => <CommentList {...props} />}
+            path="/posts/:id(\d+)/comments/create"
+            render={(props) => <CommentForm {...props} />}
           ></Route>
         </CommentDataProvider>
       </div>

@@ -18,12 +18,24 @@ export const CommentDataProvider = (props) => {
     ;
   };
 
+  const addComment = post => {
+    return fetch("http://localhost:8088/comments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(post)
+    })
+      .then(getAllComments)
+  }
+
   return (
     <CommentContext.Provider
       value={{
         comments,
         getAllComments,
-        getCommentsByPostId
+        getCommentsByPostId,
+        addComment
       }}
     >
       {props.children}
