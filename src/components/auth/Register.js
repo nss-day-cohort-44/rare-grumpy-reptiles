@@ -17,7 +17,6 @@ export const Register = (props) => {
         e.preventDefault()
 
         if (password.current.value === verifyPassword.current.value) {
-            debugger
             const newUser = {
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
