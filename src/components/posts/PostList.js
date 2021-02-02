@@ -10,7 +10,7 @@ export const PostList = () => {
     getAllPosts();
   }, []);
   useEffect(() => {
-    console.log("POSTS", posts);
+    // console.log("POSTS", posts);
   }, [posts]);
 
   return (
