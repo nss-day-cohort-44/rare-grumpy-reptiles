@@ -119,6 +119,13 @@ export const PostForm = (props) => {
                 className="btn btn-primary">
                 {editMode ? "Save Updates" : "Save"}
             </Button>
+            {
+                editMode 
+                ?
+                <Button className="btn" variant="secondary" onClick={() => props.history.push("/posts")}>Cancel</Button>
+                :
+                ""
+            }
             </Form>
         </Container>
     )
