@@ -13,21 +13,23 @@ export const ApplicationViews = (props) => {
     <>
       <div>
         <PostDataProvider>
-          <Route exact path="/posts" render={
+          <CategoryDataProvider>
+            <Route exact path="/posts" render={
               (props) => <PostList {...props} />
             } />
-          <Route exact path="/posts/create" render={
+            <Route exact path="/posts/create" render={
               props => <PostForm {...props} />
-          } />
-          <Route exact path="/posts/edit/:postId(\d+)" render={
+            } />
+            <Route exact path="/posts/edit/:postId(\d+)" render={
               props => <PostForm {...props} />
-          } />
-          <Route
-            path="/posts/:id(\d+)"
-            render={(props) => {
-              return <PostDetails {...props} />;
-            }}
-          />
+            } />
+            <Route
+              path="/posts/:id(\d+)"
+              render={(props) => {
+                return <PostDetails {...props} />;
+              }}
+              />
+          </CategoryDataProvider>
         </PostDataProvider>
 
         <CategoryDataProvider>

@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 
 
 export const CategoryContext = React.createContext();
 
 export const CategoryDataProvider = (props) => {
   const [categories, setCategories] = useState([]);
+  console.log("categories DP", categories)
 
   const getAllCategories = () => {
     return fetch("http://localhost:8088/categories")
