@@ -27,13 +27,25 @@ export const PostDataProvider = (props) => {
       .then(getAllPosts)
   }
 
+  const updatePost = post => {
+    return fetch(`http://localhost:8088/posts/${post.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(post)
+    })
+      .then(getAllPosts)
+  }
+
   return (
     <PostContext.Provider
       value={{
         posts,
         getAllPosts,
         getPostById,
-        addPost
+        addPost,
+        updatePost
       }}
     >
       {props.children}
