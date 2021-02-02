@@ -19,6 +19,9 @@ export const ApplicationViews = (props) => {
           <Route exact path="/posts/create" render={
               props => <PostForm {...props} />
           } />
+          <Route exact path="/posts/edit/:postId(\d+)" render={
+              props => <PostForm {...props} />
+          } />
           <Route
             path="/posts/:id(\d+)"
             render={(props) => {
