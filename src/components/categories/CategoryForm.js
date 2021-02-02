@@ -1,5 +1,5 @@
 import React, { useRef, useContext, useEffect } from "react";
-import {ContactContext} from "./ContactProvider"
+import {CategoryContext} from "./CategoryDataProvider"
 
 export const CategoryForm = (props) => {
   const {addCategory} = useContext(CategoryContext)
@@ -8,17 +8,20 @@ export const CategoryForm = (props) => {
 
   const createNewCategory = (e) => {
     e.preventDefault();
+    console.log(newCategory.current.value)
     addCategory({
-      newCategory: newCategory.current.value
+      label: newCategory.current.value
+    }).then(() => {
+        newCategory.current.value = ""
+
     })
-      .then(() => props.history.push("/categories"))
   }
   return (
     <main style={{ textAlign: "center" }}>
       <form className="category--form" onSubmit={createNewCategory}>
-        <h1 className="h3 mb-3 font-weight-normal">
-          Please Add A New Category
-        </h1>
+        <h3 className="h3 mb-3 font-weight-normal">
+          New Category
+        </h3>
         <fieldset>
           <label htmlFor="newCategory"> New Category </label>
           <input
@@ -26,7 +29,7 @@ export const CategoryForm = (props) => {
             type="text"
             name="name"
             className="form-control"
-            placeholder="newCategory"
+            placeholder="New Category"
             required
             autoFocus
           />

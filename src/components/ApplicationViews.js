@@ -4,6 +4,7 @@ import { PostDataProvider } from "./posts/PostDataProvider";
 import { PostList } from "./posts/PostList";
 import {CategoryList } from "./categories/CategoryList"
 import {CategoryDataProvider } from "./categories/CategoryDataProvider"
+import { CategoryManager } from "./categories/CategoryManager";
 
 export const ApplicationViews = (props) => {
   return (
@@ -21,7 +22,7 @@ export const ApplicationViews = (props) => {
           <Route
             exact
             path="/categories"
-            render={(props) => <CategoryList {...props} />}
+            render={(props) => <CategoryManager {...props} />}
           ></Route>
         </CategoryDataProvider>
 

@@ -19,7 +19,7 @@ export const CategoryDataProvider = (props) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(category),
-    }).then(addCategory);
+    }).then(getAllCategories);
   };
 
   return (
