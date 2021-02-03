@@ -7,7 +7,7 @@ export const CategoryManager = (props) => {
     const {categories, getAllCategories, addCategory} = useContext(CategoryContext);
     return(
         <>
-        <CategoryList/>
+        <CategoryList history={props.history}/>
         <CategoryForm/>
         </>
     )

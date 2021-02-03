@@ -23,12 +23,33 @@ export const CategoryDataProvider = (props) => {
     }).then(getAllCategories);
   };
 
+  const editCategory = category => {
+    return fetch(`http://localhost:8088/categories/${categories.id}`,{
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(category)
+    })
+};
+
+ const deleteCategory = (categoryId) => {
+    return fetch(`http://localhost:8088/categories/${categoryId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => getAllCategories(categoryId));
+  };
+
   return (
     <CategoryContext.Provider
       value={{
         categories,
         getAllCategories,
-        addCategory
+        addCategory,
+        editCategory,
+        deleteCategory,
       }}
     >
       {props.children}
