@@ -1,14 +1,18 @@
-import React, {useContext, useState, useEffect} from "react"
+import React, {useContext, useState, useEffect, useRef} from "react"
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import {CommentContext} from "./CommentDataProvider"
 
+
 export const CommentForm = (props) => {
 const {addComment } = useContext(CommentContext)
 const [comment, setComment] = useState({})
+const content = useRef(null)
 
 // changes the State of comment below
+
+
 
 const handleControlledInputChange = (event) => {
     const newComment = Object.assign({}, comment)
@@ -18,8 +22,12 @@ const handleControlledInputChange = (event) => {
 
 
 const createNewComment = () => {
+    console.log(props)
     addComment({
-        
+        post_id: props.match.params.id,
+        content: content.current.value,
+        author_id: localStorage.getItem("rare_user_id"),
+        created_on: Date.now()
     })
 }
 
@@ -30,7 +38,7 @@ return (
  <Form.Group>
      <div className="form-group">
          <Form.Label htmlFor="title">Comment</Form.Label>
-         <Form.Control type="text" name="title" required autoFocus className="form-control"
+         <Form.Control type="text" name="title" required autoFocus ref={content}className="form-control"
              proptype="varchar"
              defaultValue={Comment.title}
              onChange={handleControlledInputChange}
