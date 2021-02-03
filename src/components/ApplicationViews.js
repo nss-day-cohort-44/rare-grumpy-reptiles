@@ -3,15 +3,12 @@ import { Route } from "react-router-dom";
 import { PostDataProvider } from "./posts/PostDataProvider";
 import { PostDetails } from "./posts/PostDetails";
 import { PostList } from "./posts/PostList";
-<<<<<<< HEAD
 import { CommentDataProvider } from "./comments/CommentDataProvider";
 import { CommentList } from "./comments/CommentList";
 import { CommentForm } from "./comments/CommentForm";
-=======
 import {CategoryList } from "./categories/CategoryList"
 import {CategoryDataProvider } from "./categories/CategoryDataProvider"
 import { CategoryManager } from "./categories/CategoryManager";
->>>>>>> main
 import { PostForm } from "./posts/PostForm";
 
 export const ApplicationViews = (props) => {
