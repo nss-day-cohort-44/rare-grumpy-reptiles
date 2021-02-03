@@ -13,8 +13,12 @@ export const CategoryList = (props) => {
 
    const deleteCategoryButton = (event) => {
     const categoryId = event.target.id;
-    deleteCategory(categoryId);
-    return props.history.push(`/categories`);
+    if (window.confirm("Are you sure you want to delete?")){
+        deleteCategory(categoryId);
+        return props.history.push("/categories");
+
+    }
+    
   };
 
    return (
