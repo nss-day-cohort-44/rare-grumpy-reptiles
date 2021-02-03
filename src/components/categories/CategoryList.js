@@ -28,14 +28,15 @@ export const CategoryList = (props) => {
         <article className="categoryList">
             {
                 categories.map(category => {
-                    return <Link key={category.id} to={`/categories/${category.id}`}>
+                    return <div> <Link key={category.id} to={`/categories/${category.id}`}>
                         <h3>{category.label}</h3>
+                        </Link>
                         <button type="submit"> Edit Category </button>
                         <button class="delete-category-button" onClick={deleteCategoryButton} id={category.id}>
                 Delete Category{" "}
               </button>
-                    </Link>
-                })
+            
+                </div>})
             }
         </article>
         
