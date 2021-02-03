@@ -1,6 +1,6 @@
 import React, {useContext, useState, useEffect} from "react"
 import { PostContext } from "./PostDataProvider"
-// import { CategoriesContext } from "../categories/CategoriesDataProvider"
+import { CategoryContext } from "../categories/CategoryDataProvider"
 // react-bootstrap components
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
@@ -10,7 +10,7 @@ export const PostForm = (props) => {
     const { updatePost, addPost, getPostById } = useContext(PostContext)
     const [post, setPost] = useState({})
 
-    // const { categories, getCategories } = useContext(CategoriesContext)
+    const { categories, getAllCategories } = useContext(CategoryContext)
 
     const editMode = props.match.params.hasOwnProperty("postId")
 
@@ -23,16 +23,20 @@ export const PostForm = (props) => {
     const getPostInEditMode = () => {
         if (editMode) {
             const postToEdit = parseInt(props.match.params.postId)
-
-            const selectedPost = getPostById(postToEdit)
-            setPost(selectedPost)
+            
+            getPostById(postToEdit)
+                .then((selectedPost) => setPost(selectedPost))
         }
     }
 
     useEffect(() => {
-        // getCategories()
+        getAllCategories()
         getPostInEditMode()
     }, [])
+
+    useEffect(() => {
+        console.log("categories", categories)
+    }, [categories])
 
     const createNewPost = () => {
         if (editMode) {
@@ -50,7 +54,7 @@ export const PostForm = (props) => {
         }
         else {
             addPost({
-                user_id: parseInt(props.match.params.rare_user_id),
+                user_id: parseInt(localStorage.getItem("rare_user_id")),
                 category_id: parseInt(post.category_id),
                 title: post.title,
                 image_url: post.image_url,
@@ -103,11 +107,11 @@ export const PostForm = (props) => {
                         onChange={handleControlledInputChange}>
 
                         <option value="1">Select a category</option>
-                        {/* {categories.map(c => (
+                        {categories.map(c => (
                             <option key={c.id} value={c.id}>
                                 {c.label}
                             </option>
-                        ))} */}
+                        ))}
                     </Form.Control>
                 </div>
             </Form.Group>
@@ -119,6 +123,13 @@ export const PostForm = (props) => {
                 className="btn btn-primary">
                 {editMode ? "Save Updates" : "Save"}
             </Button>
+            {
+                editMode 
+                ?
+                <Button className="btn" variant="secondary" onClick={() => props.history.push("/posts")}>Cancel</Button>
+                :
+                ""
+            }
             </Form>
         </Container>
     )
