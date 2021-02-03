@@ -1,18 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { PostContext } from "./PostDataProvider";
 import { Link } from "react-router-dom";
-import "./Post.css";
+// import "./Post.css";
 
 export const PostDetails = (props) => {
-  const { getPostByUser } = useContext(PostContext);
-  const [post, setPost] = useState({});
+  const { getPostById, getPostByUser, posts } = useContext(PostContext);
+  const [post, setPost] = useState({ user: { username: null } });
 
   useEffect(() => {
-    getPostByUser(props.match.params.id).then((parsedPost) =>
-      setPost(parsedPost)
-    );
-    console.log("POSTS", post);
+    // debugger;
+    getPostById(props.match.params.id).then((parsedPost) => {
+      setPost(parsedPost);
+    });
   }, []);
+  console.log("POST", post);
+  console.log("PropS", props);
 
   return (
     <>
