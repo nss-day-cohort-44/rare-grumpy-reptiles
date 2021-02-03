@@ -10,42 +10,33 @@ export const PostDataProvider = (props) => {
       .then((res) => res.json())
       .then(setPosts);
   };
-<<<<<<< HEAD
-  
-=======
->>>>>>> main
 
   const getPostById = (id) => {
-    return fetch(`http://localhost:8088/posts/${id}`)
-      .then(res => res.json())
-  }
+    return fetch(`http://localhost:8088/posts/${id}`).then((res) => res.json());
+  };
 
-  const addPost = post => {
+  const addPost = (post) => {
     return fetch("http://localhost:8088/posts", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(post)
-    })
-      .then(getAllPosts)
-  }
+      body: JSON.stringify(post),
+    }).then(getAllPosts);
+  };
 
-  const updatePost = post => {
+  const updatePost = (post) => {
     return fetch(`http://localhost:8088/posts/${post.id}`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(post)
-    })
-      .then(getAllPosts)
-  }
+      body: JSON.stringify(post),
+    }).then(getAllPosts);
+  };
 
   const getPostByUser = (userId) => {
-    return fetch(
-      `http://localhost:8088/posts/?user_id=${userId}?_expand=username`
-    );
+    return fetch(`http://localhost:8088/posts?user_id=${userId}`);
   };
   return (
     <PostContext.Provider
@@ -55,11 +46,8 @@ export const PostDataProvider = (props) => {
         getPostById,
         addPost,
         updatePost,
-<<<<<<< HEAD
+
         getPostByUser,
-=======
-        getPostByUser
->>>>>>> main
       }}
     >
       {props.children}
