@@ -46,6 +46,7 @@ export const PostDataProvider = (props) => {
         getPostById,
         addPost,
         updatePost,
+
         getPostByUser,
       }}
     >
