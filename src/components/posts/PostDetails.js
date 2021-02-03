@@ -31,6 +31,7 @@ export const PostDetails = (props) => {
         <div>
           <AddCommentButton {...props} />
         </div>
+        <Link to={`posts/edit/${post.id}`}>Edit</Link>
       </div>
     </>
   );
