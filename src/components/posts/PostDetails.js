@@ -3,6 +3,8 @@ import { PostContext } from "./PostDataProvider";
 import { Link } from "react-router-dom";
 import { AddCommentButton } from "../comments/AddCommentButton";
 
+import { DeletePostButton } from "./DeletePostButton";
+
 // import "./Post.css";
 
 export const PostDetails = (props) => {
@@ -31,7 +33,12 @@ export const PostDetails = (props) => {
         <div>
           <AddCommentButton {...props} />
         </div>
-        <Link to={`posts/edit/${post.id}`}>Edit</Link>
+        
+
+
+        <div>
+          <DeletePostButton {...props} />
+        </div>
       </div>
     </>
   );
