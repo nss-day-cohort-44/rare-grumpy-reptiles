@@ -91,7 +91,7 @@ export const PostForm = (props) => {
             <Form.Group>
                 <div className="form-group">
                     <Form.Label htmlFor="content">Article Content</Form.Label>
-                    <Form.Control as="textarea" rows={5} name="content" required autoFocus className="form-control"
+                    <Form.Control as="textarea" rows={10} name="content" required autoFocus className="form-control"
                         proptype="varchar"
                         defaultValue={post.content}
                         onChange={handleControlledInputChange}
@@ -106,7 +106,7 @@ export const PostForm = (props) => {
                         value={post.category_id}
                         onChange={handleControlledInputChange}>
 
-                        <option value="1">Select a category</option>
+                        <option value="0">Select a category</option>
                         {categories.map(c => (
                             <option key={c.id} value={c.id}>
                                 {c.label}
