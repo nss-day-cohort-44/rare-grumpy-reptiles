@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { PostContext } from "./PostDataProvider";
 import { Link } from "react-router-dom";
 import { AddCommentButton } from "../comments/AddCommentButton";
+import { EditPostButton } from "./EditPostButton";
 
 // import "./Post.css";
 
@@ -31,7 +32,10 @@ export const PostDetails = (props) => {
         <div>
           <AddCommentButton {...props} />
         </div>
-        <Link to={`posts/edit/${post.id}`}>Edit</Link>
+        {/* <Link to={`posts/edit/${post.id}`}>Edit</Link> */}
+        <div>
+          <EditPostButton {...props} />
+        </div>
       </div>
     </>
   );
