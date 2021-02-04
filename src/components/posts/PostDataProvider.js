@@ -35,6 +35,13 @@ export const PostDataProvider = (props) => {
     }).then(getAllPosts);
   };
 
+  const deletePost = id => {
+    return fetch(`http://localhost:8088/posts/${id}`, {
+      method: "DELETE"
+    })
+      .then(getAllPosts)
+  }
+
   const getPostByUser = (userId) => {
     return fetch(`http://localhost:8088/posts?user_id=${userId}`);
   };
@@ -46,8 +53,8 @@ export const PostDataProvider = (props) => {
         getPostById,
         addPost,
         updatePost,
-
-        getPostByUser,
+        deletePost,
+        getPostByUser
       }}
     >
       {props.children}
